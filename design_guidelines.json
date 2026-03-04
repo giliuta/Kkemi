@@ -1,0 +1,192 @@
+{
+  "design_system": {
+    "identity": {
+      "name": "Kkemi Design Studio",
+      "essence": "Tactile Luxury & Digital Craftsmanship",
+      "emotional_tone": "Sophisticated, Artistic, Precise, Warm, Expensive",
+      "archetype": "The Artisan Architect - blending raw material (paper/ink) with structural precision"
+    },
+    "typography": {
+      "font_family": {
+        "display": "Playfair Display, serif",
+        "heading": "Libre Baskerville, serif",
+        "body": "Inter, sans-serif",
+        "accent": "Space Mono, monospace"
+      },
+      "scale": {
+        "display_huge": "text-7xl md:text-9xl tracking-tighter leading-[0.8]",
+        "h1": "text-5xl md:text-7xl tracking-tight leading-none",
+        "h2": "text-4xl md:text-5xl tracking-tight leading-tight",
+        "h3": "text-2xl md:text-3xl tracking-normal",
+        "body_large": "text-lg md:text-xl leading-relaxed",
+        "body_base": "text-base leading-relaxed",
+        "caption": "text-sm tracking-widest uppercase font-accent"
+      },
+      "usage_rules": {
+        "hero_text": "Use Playfair Display Italic for emphasis words within a standard Playfair sentence.",
+        "section_numbers": "Use Space Mono (e.g., '(01)') for section indexing.",
+        "mix": "Always pair Serif headings with Sans-serif body text for high contrast."
+      }
+    },
+    "colors": {
+      "palette": {
+        "background": {
+          "default": "#FAF8F5",
+          "dark": "#1A1A1A",
+          "soft": "#F2EBE5"
+        },
+        "foreground": {
+          "default": "#1A1A1A",
+          "muted": "#555555",
+          "inverse": "#FAF8F5"
+        },
+        "accent": {
+          "gold": "#B8860B",
+          "purple": "#5B2C6F",
+          "pink": "#E8B4B8",
+          "green": "#1B4332",
+          "coral": "#FF6B6B"
+        },
+        "border": {
+          "light": "rgba(26, 26, 26, 0.1)",
+          "dark": "rgba(250, 248, 245, 0.1)"
+        }
+      },
+      "semantic_usage": {
+        "primary_bg": "background.default",
+        "secondary_bg": "accent.pink (light opacity)",
+        "text_primary": "foreground.default",
+        "cta_primary": "foreground.default",
+        "cta_text": "background.default",
+        "highlight": "accent.gold",
+        "status_open": "accent.green",
+        "status_closed": "accent.coral"
+      }
+    },
+    "layout": {
+      "spacing": {
+        "container_padding": "px-6 md:px-12 lg:px-24",
+        "section_gap": "py-24 md:py-32 lg:py-40",
+        "element_gap": "gap-8"
+      },
+      "grids": {
+        "bento": "grid grid-cols-1 md:grid-cols-3 gap-6",
+        "gallery": "flex overflow-x-auto snap-x snap-mandatory gap-8 scrollbar-hide"
+      }
+    },
+    "visual_enhancers": {
+      "texture": {
+        "grain": "fixed inset-0 pointer-events-none opacity-[0.03] z-50 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]",
+        "paper_edge": "Rough ragged edge SVG separator between dark and light sections."
+      },
+      "shadows": {
+        "soft_lift": "shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)]",
+        "sharp": "shadow-[4px_4px_0px_0px_#1A1A1A]"
+      },
+      "borders": {
+        "delicate": "border border-black/10",
+        "frame": "border-l border-r border-black/5"
+      },
+      "cursor": {
+        "default": "w-4 h-4 bg-accent-gold rounded-full fixed pointer-events-none z-[100] mix-blend-difference transition-transform duration-200",
+        "hover": "scale-[3]"
+      }
+    }
+  },
+  "component_library": {
+    "buttons": {
+      "primary": {
+        "classes": "relative px-8 py-4 bg-foreground-default text-background-default rounded-full overflow-hidden group hover:scale-105 transition-transform duration-300",
+        "animation": "Fill effect from bottom on hover"
+      },
+      "secondary": {
+        "classes": "px-6 py-3 border border-current text-foreground-default rounded-full hover:bg-foreground-default hover:text-background-default transition-colors duration-300"
+      },
+      "whatsapp": {
+        "classes": "fixed bottom-8 right-8 w-16 h-16 bg-[#25D366] text-white rounded-full shadow-2xl z-40 flex items-center justify-center hover:scale-110 transition-transform duration-300"
+      }
+    },
+    "navigation": {
+      "header": {
+        "type": "Floating or Sticky",
+        "classes": "fixed top-0 left-0 w-full z-40 px-6 py-6 mix-blend-difference text-white flex justify-between items-center transition-all duration-300"
+      },
+      "menu_items": {
+        "classes": "font-accent uppercase text-sm tracking-widest hover:text-accent-gold transition-colors"
+      }
+    },
+    "cards": {
+      "service_card": {
+        "classes": "group relative p-8 border border-black/10 bg-white/50 backdrop-blur-sm hover:bg-white transition-colors duration-500 overflow-hidden",
+        "interaction": "Reveal image or color on hover"
+      },
+      "portfolio_item": {
+        "classes": "min-w-[80vw] md:min-w-[45vw] h-[60vh] relative group overflow-hidden"
+      }
+    }
+  },
+  "motion_guidelines": {
+    "libraries": [
+      "framer-motion",
+      "lenis (MANDATORY for smooth scroll)",
+      "gsap (Optional, prioritize Framer Motion for React simplicity)"
+    ],
+    "principles": {
+      "easing": "[0.22, 1, 0.36, 1]",
+      "duration": "0.8s for layout transitions, 0.4s for micro-interactions"
+    },
+    "specific_animations": {
+      "text_reveal": "Words slide up from 100% y-offset with overflow hidden.",
+      "parallax": "Images move 20% slower than scroll speed.",
+      "marquee": "Infinite linear loop.",
+      "magnetic": "Buttons attract cursor within 50px radius."
+    }
+  },
+  "assets": {
+    "images": {
+      "hero_bg": "https://images.unsplash.com/photo-1639291492775-b2dba15cb3e4?q=85&w=1920&auto=format&fit=crop",
+      "studio_shot": "https://images.unsplash.com/photo-1658863025658-4a259cc68fc9?q=85&w=1920&auto=format&fit=crop",
+      "portfolio_1": "https://images.unsplash.com/photo-1750208759761-6a32d532e426?q=85&w=1000&auto=format&fit=crop",
+      "portfolio_2": "https://images.unsplash.com/photo-1700267642917-0df52f004f86?q=85&w=1000&auto=format&fit=crop",
+      "portfolio_3": "https://images.unsplash.com/photo-1641317136698-284db1e10c1b?q=85&w=1000&auto=format&fit=crop",
+      "portfolio_4": "https://images.unsplash.com/photo-1759157403692-9a639efdc023?q=85&w=1000&auto=format&fit=crop",
+      "portfolio_5": "https://images.unsplash.com/photo-1695634365014-7debec896789?q=85&w=1000&auto=format&fit=crop",
+      "portfolio_6": "https://images.unsplash.com/photo-1695634621121-691d54259d37?q=85&w=1000&auto=format&fit=crop"
+    }
+  },
+  "implementation_steps": {
+    "phase_1_setup": [
+      "Install dependencies: framer-motion, @studio-freight/lenis, lucide-react, sonner",
+      "Configure Tailwind colors and fonts in tailwind.config.js",
+      "Set up global CSS for grain and smooth scroll"
+    ],
+    "phase_2_core_components": [
+      "Build CustomCursor.jsx",
+      "Build Navbar.jsx with LanguageSwitcher",
+      "Build Footer.jsx with Open/Closed logic"
+    ],
+    "phase_3_sections": [
+      "Hero: Large typography + Parallax images",
+      "Marquee: Infinite text loop",
+      "Services: Grid of hoverable cards",
+      "Portfolio: Horizontal scrolling container",
+      "Process: Sticky scroll steps",
+      "Contact: Form with file upload + Map"
+    ],
+    "phase_4_polish": [
+      "Add PageTransition component",
+      "Implement magnetic effects",
+      "Test responsiveness (Stack horizontal scroll on mobile)"
+    ]
+  },
+  "universal_guidelines": {
+    "rules": [
+      "DO NOT use generic centered layouts. Use asymmetry.",
+      "Use 'data-testid' on all interactive elements.",
+      "Ensure text contrast meets APCA/WCAG AA standards.",
+      "Use 'sonner' for all toast notifications.",
+      "Never use pure black (#000000). Use #1A1A1A.",
+      "Mobile First: Horizontal scrolls must become vertical lists on mobile."
+    ]
+  }
+}
