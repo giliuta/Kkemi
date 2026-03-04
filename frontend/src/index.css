@@ -55,11 +55,7 @@
   }
 }
 
-@layer base {
-  [data-debug-wrapper="true"] {
-    display: contents !important;
-  }
-}
+/* Custom styles */
 
 /* Grain overlay */
 .grain-overlay {
