@@ -1,70 +1,70 @@
-# Getting Started with Create React App
+# Kkemi Design Studio & Typography
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Премиальный портфолио-сайт для дизайн-студии Kkemi (Пафос, Кипр).
 
-## Available Scripts
+## Как задеплоить на Vercel
 
-In the project directory, you can run:
+### Шаг 1 — Загрузка на GitHub
 
-### `npm start`
+```bash
+# Создайте новый репозиторий на GitHub, затем:
+cd frontend
+git init
+git add .
+git commit -m "Kkemi Design Studio website"
+git branch -M main
+git remote add origin https://github.com/ВАШ_ЮЗЕРНЕЙМ/kkemi-site.git
+git push -u origin main
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+> **Важно:** Загружайте именно содержимое папки `frontend/` как корень репозитория, НЕ всю папку `/app/`.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Шаг 2 — Деплой на Vercel
 
-### `npm test`
+1. Зайдите на [vercel.com](https://vercel.com) и войдите через GitHub
+2. Нажмите **"Add New..." → "Project"**
+3. Найдите и выберите ваш репозиторий `kkemi-site`
+4. Vercel автоматически определит настройки. Проверьте:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+| Параметр | Значение |
+|---|---|
+| **Framework Preset** | `Create React App` |
+| **Build Command** | `CI=false craco build` *(уже в package.json)* |
+| **Output Directory** | `build` |
+| **Install Command** | `yarn install` |
 
-### `npm run build`
+5. Environment Variables — **ничего добавлять НЕ нужно**
+6. Нажмите **"Deploy"**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Готово! Через 1-2 минуты сайт будет доступен.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Шаг 3 — Свой домен (по желанию)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. В Vercel: **Settings → Domains**
+2. Добавьте домен (например `kkemi.com.cy`)
+3. Настройте DNS у регистратора:
+   - **A** запись → `76.76.21.21`
+   - **CNAME** `www` → `cname.vercel-dns.com`
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Структура проекта
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+├── public/           # Фавиконы и index.html
+├── src/
+│   ├── components/   # React-компоненты секций
+│   ├── context/      # Контекст языка (EN/EL/RU)
+│   ├── i18n/         # Переводы
+│   ├── App.js        # Главный компонент
+│   └── index.css     # Глобальные стили
+├── package.json
+├── craco.config.js   # Webpack alias (@)
+├── tailwind.config.js
+├── vercel.json       # SPA routing для Vercel
+└── README.md
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Контактная форма
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+При отправке формы открывается WhatsApp с предзаполненным сообщением на номер +35799175772.

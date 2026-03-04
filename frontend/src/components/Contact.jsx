@@ -1,10 +1,7 @@
 import { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { MapPin, Phone, Instagram, Clock, Upload } from 'lucide-react';
+import { MapPin, Phone, Instagram, Clock } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
-import axios from 'axios';
-
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
 const HOURS_DATA = [
   { day: 'monday', hours: '09:00 - 13:00, 15:00 - 18:00' },
@@ -21,36 +18,27 @@ export default function Contact() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', service: '', message: '' });
-  const [files, setFiles] = useState([]);
   const [status, setStatus] = useState(null);
-  const [loading, setLoading] = useState(false);
   const serviceOptions = t('contact.form.serviceOptions') || [];
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
-    setStatus(null);
 
-    const fd = new FormData();
-    fd.append('name', formData.name);
-    fd.append('email', formData.email);
-    if (formData.phone) fd.append('phone', formData.phone);
-    if (formData.service) fd.append('service', formData.service);
-    if (formData.message) fd.append('message', formData.message);
-    files.forEach((f) => fd.append('files', f));
+    const subject = encodeURIComponent(
+      `[Kkemi] ${formData.service || 'New Inquiry'} — ${formData.name}`
+    );
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone || '—'}\nService: ${formData.service || '—'}\n\nMessage:\n${formData.message || '—'}`
+    );
 
-    try {
-      await axios.post(`${API}/contact`, fd, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
-      setStatus('success');
-      setFormData({ name: '', email: '', phone: '', service: '', message: '' });
-      setFiles([]);
-    } catch {
-      setStatus('error');
-    } finally {
-      setLoading(false);
-    }
+    // Open WhatsApp with pre-filled message
+    const waText = encodeURIComponent(
+      `Hi! I'm ${formData.name}.\nInterested in: ${formData.service || 'your services'}\n\n${formData.message || ''}`
+    );
+    window.open(`https://wa.me/35799175772?text=${waText}`, '_blank');
+
+    setStatus('success');
+    setFormData({ name: '', email: '', phone: '', service: '', message: '' });
   };
 
   const closedText = t('status.closed');
@@ -153,40 +141,18 @@ export default function Contact() {
               />
             </div>
 
-            {/* File upload */}
-            <div>
-              <label className="flex items-center gap-3 cursor-pointer text-charcoal/50 hover:text-gold transition-colors font-accent text-xs tracking-wider uppercase" data-testid="contact-upload">
-                <Upload size={16} />
-                {t('contact.form.upload')}
-                <input
-                  type="file"
-                  multiple
-                  accept="image/*"
-                  className="hidden"
-                  onChange={(e) => setFiles(Array.from(e.target.files))}
-                />
-              </label>
-              {files.length > 0 && (
-                <p className="text-xs text-charcoal/40 mt-2 font-accent">{files.length} file(s) selected</p>
-              )}
-            </div>
-
             <button
               type="submit"
-              disabled={loading}
-              className="magnetic-btn bg-charcoal text-cream px-10 py-4 rounded-full font-accent text-xs tracking-[0.2em] uppercase disabled:opacity-50"
+              className="magnetic-btn bg-charcoal text-cream px-10 py-4 rounded-full font-accent text-xs tracking-[0.2em] uppercase"
               data-testid="contact-submit"
             >
               <span className="relative z-10">
-                {loading ? '...' : t('contact.form.submit')}
+                {t('contact.form.submit')}
               </span>
             </button>
 
             {status === 'success' && (
               <p className="text-forest text-sm font-body" data-testid="contact-success">{t('contact.form.success')}</p>
-            )}
-            {status === 'error' && (
-              <p className="text-coral text-sm font-body" data-testid="contact-error">{t('contact.form.error')}</p>
             )}
           </motion.form>
 
